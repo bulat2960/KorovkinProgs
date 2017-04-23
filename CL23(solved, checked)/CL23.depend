@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1491860942 source:d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\cl23\main.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	"Matrix.h"
+
+1492459766 d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\include\matrix.h
+
+1492868851 source:d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\cl23(solved)\main.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	"Matrix.h"
+

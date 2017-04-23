@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1492978030 source:d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\cl1\main.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	"ComplexPolynom.h"
+
+1492978689 source:d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\cl1\src\complexpolynom.cpp
+	"ComplexPolynom.h"
+	<iostream>
+
+1492878502 d:\Мои программы\Программирование\Мои проекты\Зачетные(второй семестр)\cl1\include\complexpolynom.h
+
