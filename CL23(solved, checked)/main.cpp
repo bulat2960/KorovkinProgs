@@ -47,7 +47,6 @@ int main()
             {
                 cout << "X win(col): str " << i + 1 << ", col " << j + 1 << endl;
                 winFlag = true;
-                break;
             }
         }
     }

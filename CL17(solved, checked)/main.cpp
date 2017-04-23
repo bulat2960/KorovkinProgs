@@ -8,6 +8,11 @@ int main()
     unsigned size1;
     unsigned size2;
     cin >> size1 >> size2;
+    if (size1 <= 1 || size2 <= 1)
+    {
+        cout << "MATRIX DISMENSIONS MUST BE CORRECT" << endl;
+        return 0;
+    }
 
     Matrix<bool> mtrx(size1, size2);
     for (unsigned i = 0; i < size1; i++)

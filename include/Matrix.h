@@ -14,7 +14,7 @@ class Array
 			_arrSize = arrSize;
         }
 
-        T& operator[](int index)
+        T& operator[](int index) const
         {
             return arr[index];
         }
@@ -54,7 +54,7 @@ class Matrix
             return _size2;
         }
 
-        Array<T>& operator[](int index)
+        Array<T>& operator[](int index) const
         {
             return *matrix[index];
         }

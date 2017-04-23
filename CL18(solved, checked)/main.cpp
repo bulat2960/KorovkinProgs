@@ -10,7 +10,7 @@ int main()
     int n;
     int m;
     cin >> n >> m;
-    if (n == 1 || m == 1)
+    if (n <= 1 || m <= 1)
     {
         cout << "MATRIX DISMENSIONS MUST BE CORRECT" << endl;
         return 0;

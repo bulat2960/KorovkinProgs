@@ -2,21 +2,34 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
+#include <stdexcept>
 #include "Matrix.h"
 
 using namespace std;
 
-const int n = 5;
+template<typename T>
+void generateMatrix(Matrix<T>& matrix)
+{
+    for(int i = 0; i < matrix.size1(); i++)
+    {
+        for(int j = 0; j < matrix.size2(); j++)
+        {
+            matrix[i][j] = 1 + rand() % 10;
+        }
+    }
+}
 
 template<typename T>
-void fillMatrix(Matrix<T>& matrix)
+void showMatrix(const Matrix<T>& matrix)
 {
-    for (int i = 0; i < n; i++)
+    cout << "Initial matrix" << endl;
+    for (int i = 0; i < matrix.size1(); i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < matrix.size2(); j++)
         {
-            matrix[i][j] = 1 + rand() % 9;
+            cout << setw(5) << setprecision(2) << matrix[i][j] << ' ';
         }
+        cout << endl;
     }
 }
 
@@ -25,24 +38,23 @@ int determinantMatrix(Matrix<T>& matrix)
 {
     double coef;
 
-    cout << "Initial matrix" << endl;
     for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            cout << setw(5) << setprecision(2) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
+    {int n;
+    cin >> n;
         for (int j = i + 1; j < n; j++)
         {
+            if (matrix[i][i] == 0)
+            {
+                throw invalid_argument("WRONG TRIANGULAR MATRIX!");
+            }
             coef = matrix[j][i] / matrix[i][i];
             for (int k = 0; k < n; k++)
             {
                 matrix[j][k] -= matrix[i][k] * coef;
+                if (matrix[j][k] > -0.0001 && matrix[j][k] < 0.0001)
+                {
+                    matrix[j][k] = 0;
+                }
             }
         }
     }
@@ -59,10 +71,22 @@ int main()
 {
     srand(time(0));
 
+    int n;
+    cout << "Input dismensions ";
+    cin >> n;
     Matrix<double> matrix(n, n);
-    fillMatrix(matrix);
+    generateMatrix(matrix);
+    showMatrix(matrix);
 
-    cout << determinantMatrix(matrix);
+    try
+    {
+        cout << determinantMatrix(matrix);
+
+    }
+    catch (const invalid_argument& e)
+    {
+        cout << e.what() << endl;
+    }
 
     return 0;
 }
