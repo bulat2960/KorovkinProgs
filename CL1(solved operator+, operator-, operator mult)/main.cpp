@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include "ComplexPolynom.h"
 
 using namespace std;
@@ -98,14 +100,28 @@ void getPointPoly(double* arr)
 
 int main()
 {
+    srand(time(0));
+
     const int size1 = 4;
     const int size2 = 3;
 
-	double Re1[size1] = {1, 2, 1, 6};
-	double Im1[size1] = {1, -1, 2, 4};
+    const int randBorder = 10;
 
-	double Re2[size2] = {2, 7, 2};
-	double Im2[size2] = {3, 5, 3};
+	double Re1[size1];
+	double Im1[size1];
+	for (int i = 0; i < size1; i++)
+    {
+        Re1[i] = 1 + rand() % randBorder;
+        Im1[i] = 1 + rand() % randBorder;
+    }
+
+	double Re2[size2];
+	double Im2[size2];
+	for (int i = 0; i < size2; i++)
+    {
+        Re2[i] = 1 + rand() % randBorder;
+        Im2[i] = 1 + rand() % randBorder;
+    }
 
 	ComplexPolynom poly1(size1 - 1, Re1, Im1);
 	ComplexPolynom poly2(size2 - 1, Re2, Im2);
@@ -135,6 +151,7 @@ int main()
 	double* pointArr = new double[2];
 	pointArr[0] = 1;
 	pointArr[1] = 3;
+    cout << "The value of a poly at a point (" << pointArr[0] << ", " << pointArr[1] << "): " << endl;
 	pointArr = poly3.getPointValue(pointArr);
 	getPointPoly(pointArr);
 

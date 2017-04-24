@@ -175,23 +175,10 @@ ComplexPolynom& ComplexPolynom::operator-=(const ComplexPolynom& poly)
 	return *this;
 }
 
-#include <iostream>
-using namespace std;
-
 ComplexPolynom& ComplexPolynom::operator*=(const ComplexPolynom& poly)
 {
 	double* reTemp = new double[deg + poly.deg + 1];
 	double* imTemp = new double[deg + poly.deg + 1];
-
-	for (int i = 0; i <= deg; i++)
-    {
-        cout << reArray[i] << ' ' << imArray[i] << endl;
-    }
-    cout << endl;
-    for (int i = 0; i <= poly.deg; i++)
-    {
-        cout << poly.reArray[i] << ' ' << poly.imArray[i] << endl;
-    }
 
 	for (int i = 0; i <= deg + poly.deg; i++)
 	{
@@ -474,7 +461,6 @@ int ComplexPolynom::getDeg() const
 
 ComplexPolynom::~ComplexPolynom()
 {
-    std::cout << "DESTRUCTOR" << std::endl;
 	delete[] reArray;
 	delete[] imArray;
 }
