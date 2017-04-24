@@ -496,6 +496,8 @@ int ComplexPolynom::getDeg() const
 
 ComplexPolynom::~ComplexPolynom()
 {
+    cout << "DESTRUCTOR" << endl;
 	delete[] reArray;
 	delete[] imArray;
+	cout << "DEST1" << endl;
 }

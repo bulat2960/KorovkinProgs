@@ -103,7 +103,18 @@ int main()
     const int size1 = 3;
     const int size2 = 2;
 
-    const int randBorder = 10;
+    double Re1[size1] = {2, 5, 10};
+    double Im1[size1] = {8, 1, 5};
+
+    double Re2[size2] = {1, 0};
+    double Im2[size2] = {0, 0};
+    ComplexPolynom poly1(size1 - 1, Re1, Im1);
+	ComplexPolynom poly2(size2 - 1, Re2, Im2);
+	ComplexPolynom poly3 = poly1 * poly2;
+
+
+
+    /*const int randBorder = 10;
 
 	double Re1[size1];
 	double Im1[size1];
@@ -123,7 +134,8 @@ int main()
 
 	ComplexPolynom poly1(size1 - 1, Re1, Im1);
 	ComplexPolynom poly2(size2 - 1, Re2, Im2);
-	ComplexPolynom poly3 = poly1 / poly2;
+	ComplexPolynom poly3 = poly1 / poly2;*/
+
 
     cout << "POLYNOME1" << endl;
     double* reArr1 = new double[size1];
