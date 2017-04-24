@@ -14,6 +14,11 @@ class Array
 			_arrSize = arrSize;
         }
 
+        int arrSize() const
+        {
+            return _arrSize;
+        }
+
         T& operator[](int index) const
         {
             return arr[index];
