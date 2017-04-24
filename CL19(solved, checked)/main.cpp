@@ -22,15 +22,15 @@ void generateMatrix(Matrix<T>& matrix)
 template<typename T>
 void showMatrix(const Matrix<T>& matrix)
 {
-    cout << "Initial matrix" << endl;
     for (int i = 0; i < matrix.size1(); i++)
     {
         for (int j = 0; j < matrix.size2(); j++)
         {
-            cout << setw(4) << setprecision(2) << matrix[i][j] << ' ';
+            cout << setw(10) << setprecision(3) << matrix[i][j] << ' ';
         }
         cout << endl;
     }
+    cout << "--------------------------" << endl;
 }
 
 template<typename T>
@@ -45,7 +45,7 @@ void triangularMatrix(Matrix<T>& matrix)
             if (matrix[i][i] == 0)
             {
                 throw invalid_argument("WRONG TRIANGULAR MATRIX!");
-            }cout << "Input dismensions ";
+            }
             coef = matrix[j][i] / matrix[i][i];
 
             // Delete the next 4 lines if you understand the principle of the Gauss method
@@ -57,6 +57,7 @@ void triangularMatrix(Matrix<T>& matrix)
             {
                 matrix[j][k] -= matrix[i][k] * coef;
             }
+            showMatrix(matrix);
         }
     }
 
@@ -80,7 +81,7 @@ int main()
     srand(time(0));
 
     int n;
-    cout << "Input dismensions ";
+    cout << "Input dimensions ";
     cin >> n;
 
     Matrix<double> matrix(n, n);

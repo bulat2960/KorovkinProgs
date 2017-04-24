@@ -38,17 +38,19 @@ int determinantMatrix(Matrix<T>& matrix)
 {
     double coef;
 
-    for (int i = 0; i < n; i++)
-    {int n;
-    cin >> n;
-        for (int j = i + 1; j < n; j++)
+    for (int i = 0; i < matrix.size1(); i++)
+    {
+        for (int j = i + 1; j < matrix.size2(); j++)
         {
             if (matrix[i][i] == 0)
             {
                 throw invalid_argument("WRONG TRIANGULAR MATRIX!");
-            }
+            }if(matrix.size1() == 2)
+    {
+        return (matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]);
+    }
             coef = matrix[j][i] / matrix[i][i];
-            for (int k = 0; k < n; k++)
+            for (int k = 0; k < matrix.size2(); k++)
             {
                 matrix[j][k] -= matrix[i][k] * coef;
                 if (matrix[j][k] > -0.0001 && matrix[j][k] < 0.0001)
@@ -59,8 +61,8 @@ int determinantMatrix(Matrix<T>& matrix)
         }
     }
 
-    int det = 1;
-    for (int i = 0; i < n; i++)
+    double det = 1;
+    for (int i = 0; i < matrix.size1(); i++)
     {
         det *= matrix[i][i];
     }
@@ -72,7 +74,7 @@ int main()
     srand(time(0));
 
     int n;
-    cout << "Input dismensions ";
+    cout << "Input dimensions ";
     cin >> n;
     Matrix<double> matrix(n, n);
     generateMatrix(matrix);

@@ -175,6 +175,10 @@ ComplexPolynom& ComplexPolynom::operator-=(const ComplexPolynom& poly)
 	return *this;
 }
 
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
 ComplexPolynom& ComplexPolynom::operator*=(const ComplexPolynom& poly)
 {
 	double* reTemp = new double[deg + poly.deg + 1];
@@ -248,7 +252,18 @@ ComplexPolynom& ComplexPolynom::operator/=(const ComplexPolynom &poly)
 		coef->imArray = new double[1];
 		//coef будет содержать в себе сначала An / Bs, потом An1 / Bs, An2 / Bs и т.д.
 
-		ComplexPolynom *div  = new ComplexPolynom(*this); // now будет содержать :f(x), f1(x), f2(x) ..... - делимое
+		ComplexPolynom *div  = new ComplexPolynom; // now будет содержать :f(x), f1(x), f2(x) ..... - делимое
+
+		div->deg = deg;
+
+		div->reArray = new double[div->deg + 1];
+		div->imArray = new double[div->deg + 1];
+
+		for (int i = 0; i <= div->deg; i++)
+        {
+            div->reArray[i] = reArray[i];
+            div->imArray[i] = imArray[i];
+        }
 
 		ComplexPolynom *powx = new ComplexPolynom;
 		powx->deg = div->deg - poly.deg;	//powx - это x в степени n-s,n1-s,n2-s ....
@@ -290,8 +305,28 @@ ComplexPolynom& ComplexPolynom::operator/=(const ComplexPolynom &poly)
             ComplexPolynom digit1 = *div;
             ComplexPolynom digit2 = *powx;
 
+            cout << "DIV" << endl;
+            for (int i = 0; i <= digit1.deg; i++)
+            {
+                cout << digit1.reArray[i] << ' ' << digit1.imArray[i] << endl;
+            }
+            cout << "POWX" << endl;
+            for (int i = 0; i <= digit2.deg; i++)
+            {
+                cout << digit2.reArray[i] << ' ' << digit2.imArray[i] << endl;
+            }
+
+            digit2 *= (*powx);
+
+            cout << "DIV * POWX" << endl;
+            for (int i = 0; i <= digit2.deg; i++)
+            {
+                cout << digit2.reArray[i] << ' ' << digit2.imArray[i] << endl;
+            }
+            exit(0);
+
+
             //digit2 *= (*coef);
-            //digit2 *= (*powx);
 
             digit1 -= digit2;
 

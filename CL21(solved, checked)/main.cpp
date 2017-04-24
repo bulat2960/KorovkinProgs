@@ -9,7 +9,7 @@ using namespace std;
 template<typename T>
 void generateMatrix(Matrix<T>& matrix)
 {
-    for(int i = 0; i < matrix.size1(); i++)
+    for(int i = 0; i < matrix.size2(); i++)
     {
         for(int j = 0; j < matrix.size2(); j++)
         {
@@ -35,11 +35,7 @@ void showMatrix(const Matrix<T>& matrix)
 template<typename T>
 double det(Matrix<T>& matrix)
 {
-    if(matrix.size1() == 2)
-    {
-        return (matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]);
-    }
-    else
+    if (matrix.size1() > 2)
     {
         double res = 0;
         for (int i = 0 ; i < matrix.size1(); i++)
@@ -56,6 +52,10 @@ double det(Matrix<T>& matrix)
             i % 2 == 0 ? res += det(minor) * matrix[0][i] : res -= det(minor) * matrix[0][i];
         }
         return res;
+    }
+    else
+    {
+        return (matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]);
     }
 }
 

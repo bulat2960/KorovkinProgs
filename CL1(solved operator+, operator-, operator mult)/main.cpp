@@ -100,10 +100,8 @@ void getPointPoly(double* arr)
 
 int main()
 {
-    srand(time(0));
-
-    const int size1 = 4;
-    const int size2 = 3;
+    const int size1 = 3;
+    const int size2 = 2;
 
     const int randBorder = 10;
 
@@ -125,7 +123,7 @@ int main()
 
 	ComplexPolynom poly1(size1 - 1, Re1, Im1);
 	ComplexPolynom poly2(size2 - 1, Re2, Im2);
-	ComplexPolynom poly3 = poly1 * poly2;
+	ComplexPolynom poly3 = poly1 / poly2;
 
     cout << "POLYNOME1" << endl;
     double* reArr1 = new double[size1];
