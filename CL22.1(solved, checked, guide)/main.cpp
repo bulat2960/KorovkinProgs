@@ -14,7 +14,7 @@ void generateMatrix(Matrix<T>& matrix)
     {
         for(int j = 0; j < matrix.size2(); j++)
         {
-            cin >> matrix[i][j];
+            matrix[i][j] = rand() % 10;
         }
     }
 }
@@ -71,28 +71,50 @@ bool isColMax(const Matrix<T>& matrix, int strNumber, int colNumber)
     return false;
 }
 
-
 int main()
 {
+    srand(time(0));
+
     int m, n;
     cin >> n >> m;
+    if (n <= 1 || m <= 1)
+    {
+        cout << "MATRIX DIMENSIONS MUST BE CORRECT" << endl;
+        return 0;
+    }
+
     Matrix<double> matrix(n, m);
-    generateMatrix(matrix);
-    showMatrix(matrix);
 
     ofstream out("output.txt");
 
-    for (int i = 0; i < n; i++)
+    bool flag = false;
+    while (flag == false)
     {
-        for (int j = 0; j < m; j++)
+        generateMatrix(matrix);
+
+        for (int i = 0; i < n; i++)
         {
-            cout << isStrMin(matrix, i, j) << ' ' << isColMax(matrix, i, j) << endl;
-            if (isStrMin(matrix, i, j) && isColMax(matrix, i, j))
+            for (int j = 0; j < m; j++)
             {
-                out << "(" << i + 1 << ", " << j + 1 << ")" << endl;
+                if (isStrMin(matrix, i, j) && isColMax(matrix, i, j))
+                {
+                    cout << "COORDS: " << i + 1 << ' ' << j + 1 << endl;
+                    flag = true;
+                }
+            }
+        }
+
+        if (flag == true)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    out << matrix[i][j] << ' ';
+                }
+                out << endl;
             }
         }
     }
-    system("pause");
     return 0;
 }

@@ -15,13 +15,9 @@ void Swap(int& index1, int& index2)
     index2 = temp;
 }
 
-int main()
+template<typename T>
+void generateMatrix(Matrix<T>& matrix)
 {
-    srand(time(0));
-
-    Matrix<int> matrix(SIZE, SIZE);
-
-    // GENERATE MARTIX
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -29,8 +25,11 @@ int main()
             matrix[i][j] = rand() % 100;
         }
     }
+}
 
-    // SHOW MATRIX
+template<typename T>
+void showMatrix(const Matrix<T>& matrix)
+{
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -40,8 +39,11 @@ int main()
         cout << endl;
     }
     cout << "------------------" << endl;
+}
 
-    // FIND MAX
+template<typename T>
+void swapElements(Matrix<T>& matrix)
+{
     for (int counter = 0; counter < SIZE; counter++)
     {
         for (int i = 0; i < SIZE; i++)
@@ -59,8 +61,11 @@ int main()
             }
         }
     }
+}
 
-    // SPECIAL SITUATON
+template<typename T>
+void specialSituation(Matrix<T>& matrix)
+{
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 1; j < SIZE - i; j++)
@@ -71,15 +76,23 @@ int main()
             }
         }
     }
+}
 
-    // SHOW NEW MATRIX
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            cout << setw(2) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
+int main()
+{
+    srand(time(0));
+
+    Matrix<int> matrix(SIZE, SIZE);
+
+    generateMatrix(matrix);
+
+    showMatrix(matrix);
+
+    swapElements(matrix);
+
+    specialSituation(matrix);
+
+    showMatrix(matrix);
+
     return 0;
 }

@@ -106,8 +106,8 @@ int main()
     double Re1[size1] = {2, 5, 10};
     double Im1[size1] = {8, 1, 5};
 
-    double Re2[size2] = {1, 0};
-    double Im2[size2] = {0, 0};
+    double Re2[size2] = {1, 4};
+    double Im2[size2] = {0, 7};
     ComplexPolynom poly1(size1 - 1, Re1, Im1);
 	ComplexPolynom poly2(size2 - 1, Re2, Im2);
 	ComplexPolynom poly3 = poly1 * poly2;

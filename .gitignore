@@ -3,3 +3,5 @@
 *.cbp
 */bin/
 */obj/
+input.txt
+output.txt
