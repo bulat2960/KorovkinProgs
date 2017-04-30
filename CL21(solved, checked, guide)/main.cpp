@@ -64,8 +64,14 @@ int main()
     srand(time(0));
 
     int n;
-    cout << "Input dismensions ";
+    cout << "Input dimensions ";
     cin >> n;
+    if (n <= 1)
+    {
+        cout << "MATRIX DIMENSIONS MUST BE CORRECT" << endl;
+        return 0;
+    }
+
     Matrix<double> matrix(n, n);
     generateMatrix(matrix);
 

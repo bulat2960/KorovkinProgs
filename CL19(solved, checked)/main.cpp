@@ -48,16 +48,11 @@ void triangularMatrix(Matrix<T>& matrix)
             }
             coef = matrix[j][i] / matrix[i][i];
 
-            // Delete the next 4 lines if you understand the principle of the Gauss method
-            cout << "Transform element " << "[" << i + 1 << ", " << j + 1 << "]" << endl;
-            cout << "From each element of line " << j + 1 << " subtract line " << i + 1;
-            cout << " multiplied by " << setprecision(2) << matrix[j][i] << '/' << matrix[i][i] << endl;
-            cout << "----------------------------------------------------------------" << endl;
             for (int k = 0; k < matrix.size2(); k++)
             {
                 matrix[j][k] -= matrix[i][k] * coef;
             }
-            showMatrix(matrix);
+            //showMatrix(matrix);
         }
     }
 
@@ -83,6 +78,10 @@ int main()
     int n;
     cout << "Input dimensions ";
     cin >> n;
+    if (n <= 1)
+    {
+        cout << "MATRIX DIMENSIONS MUST BE CORRECT" << endl;
+    }
 
     Matrix<double> matrix(n, n);
     generateMatrix(matrix);

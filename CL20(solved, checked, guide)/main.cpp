@@ -36,6 +36,11 @@ void showMatrix(const Matrix<T>& matrix)
 template<typename T>
 int determinantMatrix(Matrix<T>& matrix)
 {
+    if (matrix.size1() == 2)
+    {
+        return (matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]);
+    }
+
     double coef;
 
     for (int i = 0; i < matrix.size1(); i++)
@@ -45,10 +50,7 @@ int determinantMatrix(Matrix<T>& matrix)
             if (matrix[i][i] == 0)
             {
                 throw invalid_argument("WRONG TRIANGULAR MATRIX!");
-            }if(matrix.size1() == 2)
-    {
-        return (matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]);
-    }
+            }
             coef = matrix[j][i] / matrix[i][i];
             for (int k = 0; k < matrix.size2(); k++)
             {
@@ -76,6 +78,12 @@ int main()
     int n;
     cout << "Input dimensions ";
     cin >> n;
+    if (n <= 1)
+    {
+        cout << "MATRIX DIMENSIONS MUST BE CORRECT" << endl;
+        return 0;
+    }
+
     Matrix<double> matrix(n, n);
     generateMatrix(matrix);
     showMatrix(matrix);
@@ -85,9 +93,9 @@ int main()
         cout << determinantMatrix(matrix);
 
     }
-    catch (const invalid_argument& e)
+    catch (const invalid_argument& error)
     {
-        cout << e.what() << endl;
+        cout << error.what() << endl;
     }
 
     return 0;
