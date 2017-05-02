@@ -12,6 +12,7 @@ int main()
         St.push('b');
         St.push('c');
         St.push('d');
+        St.push('a');
         St.print();
     }
     catch (const out_of_range& e)
@@ -20,7 +21,7 @@ int main()
     }
     catch (const char* e)
     {
-        cout << "PROGRAM FAIL" << endl;
+        cout << e << endl;
     }
     return 0;
 }

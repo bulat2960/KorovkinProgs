@@ -10,28 +10,28 @@ class Stack
             Node* next;
             T data;
         };
-        Node* first;
-        Node* last;
+        Node* tail;
         int stackSize;
         int maxSize;
     public:
         Stack(int _maxSize)
         {
-            last = nullptr;
-            first = nullptr;
+            tail = nullptr;
             maxSize = _maxSize;
             stackSize = 0;
         }
+
         ~Stack()
         {
-            while (last != nullptr)
+            while (tail != nullptr)
             {
-                Node* temp = last;
-                last = last->next;
+                Node* temp = tail;
+                tail = tail->next;
                 delete temp;
-                temp = last;
+                temp = tail;
             }
         }
+
         void push(T element)
         {
             if (stackSize == maxSize)
@@ -40,44 +40,46 @@ class Stack
             }
             Node* node = new Node;
             node->data = element;
-            if (last == nullptr)
+            if (tail == nullptr)
             {
-                last = node;
-                last->next = nullptr;
+                tail = node;
+                tail->next = nullptr;
             }
             else
             {
-                node->next = last;
-                last = node;
+                node->next = tail;
+                tail = node;
             }
             stackSize++;
         }
+
         T top()
         {
-            if (last == nullptr)
+            if (tail == nullptr)
             {
                 throw ("Stack is empty!");
             }
-            return last->data;
+            return tail->data;
         }
+
         void pop()
         {
-            if (last == nullptr)
+            if (tail == nullptr)
             {
                 throw ("Stack is empty!");
             }
-            Node* node = last;
-            last = last->next;
+            Node* node = tail;
+            tail = tail->next;
             delete node;
         }
 
         void print()
         {
-            if (last == 0)
+            if (tail == 0)
             {
                 throw ("Stack is empty!");
             }
-            for (Node* it = last; it != nullptr; it = it->next)
+            for (Node* it = tail; it != nullptr; it = it->next)
             {
                 std::cout << it->data << std::endl;
             }

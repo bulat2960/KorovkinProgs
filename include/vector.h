@@ -53,19 +53,6 @@ class Vector
             return _stor[_storSize - 1];
         }
 
-        void popIndex(unsigned index)
-        {
-            _storSize--;
-            T* result = new T[_storSize];
-
-            for (unsigned i = 0; i < _storSize; i++)
-            {
-                (i < index) ? result[i] = _stor[i] : result[i] = _stor[i + 1];
-            }
-            delete[] _stor;
-            _stor = result;
-        }
-
         T& operator [](int index) const
         {
             return _stor[index];
