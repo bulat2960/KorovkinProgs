@@ -17,12 +17,8 @@ int main()
         arr2[i] = i + 1;
     }
 
-    cout << "WTF" << endl;
     Polynom<int> poly1(arr1, 4);
-    cout << "WTF" << endl;
     Polynom<int> poly2(arr2, 3);
-    cout << "WTF" << endl;
     Polynom<int> poly3 = poly1 + poly2;
-    cout << "WTF" << endl;
     return 0;
 }

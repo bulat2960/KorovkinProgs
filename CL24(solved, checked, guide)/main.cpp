@@ -33,6 +33,7 @@ bool generateMatrix(Matrix<T>& matrix, ifstream& in)
         cout << "NOT ENOUGH ELEMENTS" << endl;
         return false;
     }
+    return true;
 }
 
 template<typename T>

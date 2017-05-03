@@ -14,6 +14,16 @@ class Vector
             _stor = nullptr;
         }
 
+        Vector(const Vector<T>& vec)
+        {
+            _storSize = vec._storSize;
+            _stor = new T[vec._storSize];
+            for (unsigned i = 0; i < vec._storSize; i++)
+            {
+                _stor[i] = vec._stor[i];
+            }
+        }
+
         ~Vector()
         {
             delete[] _stor;
@@ -21,20 +31,38 @@ class Vector
 
         void push_back(T data)
         {
-            _storSize++;
             T* result = new T[_storSize];
 
             for (unsigned i = 0; i < _storSize; i++)
             {
-                result[i] = ((i != _storSize - 1) ? _stor[i] : data);
+                result[i] = _stor[i];
             }
+
             delete[] _stor;
-            _stor = result;
+
+            _storSize++;
+            _stor = new T[_storSize];
+
+            for (unsigned i = 0; i < _storSize; i++)
+            {
+                _stor[i] = ((i != _storSize - 1) ? result[i] : data);
+            }
         }
 
         int size() const
         {
             return _storSize;
+        }
+
+        void resize(int newSize)
+        {
+            _storSize = newSize;
+            delete[] _stor;
+            _stor = new T[_storSize];
+            for (unsigned i = 0; i < _storSize; i++)
+            {
+                _stor[i] = 0;
+            }
         }
 
         bool empty() const
@@ -45,7 +73,7 @@ class Vector
         void clear()
         {
             _storSize = 0;
-            _stor = new T[_storSize];
+            delete[] _stor;
         }
 
         T back() const

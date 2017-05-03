@@ -21,28 +21,20 @@ void generateDigit(Vector<char>& vec)
     }
 }
 
-LongIntDigit operator+(const LongIntDigit& digit1, const LongIntDigit& digit2)
-{
-    LongIntDigit res = digit1;
-    Vector<int> vec = digit1.getDigit();
-
-    /*cout << "IN OPERATOR DIGIT" << endl;
-    for (int i = 0; i < vec.size(); i++)
-    {
-        cout << vec[i] << ' ';
-    }
-    cout << endl;*/
-
-    res += digit2;
-    return res;
-}
-
 ostream& operator<<(ostream& ost, const LongIntDigit& digit)
 {
-    Vector<int> vec = digit.getDigit();
-    for (int i = 0; i < vec.size(); i++)
+    if (digit.getSign() == false)
     {
-        ost << vec[i];
+        ost << '-';
+    }
+    int k = 0;
+    while (digit.getDigit()[k] == 0)
+    {
+        k++;
+    }
+    for (int i = k; i < digit.getDigit().size(); i++)
+    {
+        ost << digit.getDigit()[i];
     }
     return ost;
 }
@@ -63,7 +55,7 @@ int main()
     cout << "digit1 = " << digit1 << endl;
     cout << "digit2 = " << digit2 << endl;
 
-    LongIntDigit digit3 = digit1 + digit2;
+    LongIntDigit digit3 = digit1 * digit2;
     cout << "digit3 = " << digit3 << endl;
 
     return 0;
