@@ -1,7 +1,7 @@
 #ifndef LONGINTDIGIT_H
 #define LONGINTDIGIT_H
 
-#include "vector.h"
+#include "Vector.h"
 
 class LongIntDigit
 {
@@ -18,7 +18,6 @@ class LongIntDigit
         LongIntDigit& operator+(const LongIntDigit&);
         LongIntDigit& operator-(const LongIntDigit&);
         LongIntDigit& operator*(const LongIntDigit&);
-        LongIntDigit& operator^(int);
 };
 
 #endif // LONGINTDIGIT_H

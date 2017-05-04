@@ -53,111 +53,51 @@ void LongIntDigit::digitNormalization()
         }
     }
 
-    int temp = vec[0];
-    int counter = 0;
-    while (temp != 0)
+    while (vec[0] >= 10)
     {
-        temp /= 10;
-        counter++;
+        int transit = vec[0] / 10;
+        int remainder = vec[0] - transit * 10;
+        vec[0] = remainder;
+        vec.push_front(transit);
     }
-
-    Vector<int> tempVec;
-
-    for (int i = 0; i < counter; i++)
-    {
-        int element = static_cast<int>(vec[0] / pow(10, counter - 1 - i));
-        tempVec.push_back(element);
-        vec[0] -= element * pow(10, counter - 1 - i);
-    }
-
-    for (int i = 1; i < vec.size(); i++)
-    {
-        tempVec.push_back(vec[i]);
-    }
-
-    vec = tempVec;
 }
 
 LongIntDigit& LongIntDigit::operator+(const LongIntDigit& digit)
 {
+    LongIntDigit copyDigit = digit;
+
     int diff = max(vec.size() - digit.vec.size(), digit.vec.size() - vec.size());
-    if ((sign == true && digit.sign == true) || (sign == false && digit.sign == false))
-    {
-        if (vec.size() >= digit.vec.size())
-        {
-            for (int i = vec.size() - 1; i >= diff; i--)
-            {
-                vec[i] += digit.vec[i - diff];
-            }
-        }
-        else
-        {
-            LongIntDigit copyDigit = digit;
 
-            for (int i = copyDigit.vec.size() - 1; i >= diff; i--)
-            {
-                copyDigit.vec[i] += vec[i - diff];
-            }
-            vec = copyDigit.vec;
-            sign = copyDigit.sign;
+    //CASE 1: ++ & SIZE1 >= SIZE2
+    if (sign == true && digit.sign == true && vec.size() >= digit.vec.size())
+    {
+        for (int i = vec.size(); i >= diff; i--)
+        {
+            vec[i] += digit.vec[i - diff];
         }
     }
-    else
+
+    //CASE 2: -- & SIZE1 >= SIZE2
+    if (sign == false && digit.sign == false && vec.size() >= digit.vec.size())
     {
-        if (vec.size() > digit.vec.size())
+        for (int i = vec.size(); i >= diff; i--)
         {
-            for (int i = vec.size() - 1; i >= diff; i--)
-            {
-                vec[i] -= digit.vec[i - diff];
-            }
-        }
-        if (vec.size() == digit.vec.size())
-        {
-            bool flag = false;
-            for (int i = 0; i < vec.size(); i++)
-            {
-                if (vec[i] == digit.vec[i])
-                {
-                    continue;
-                }
-                if (vec[i] > digit.vec[i])
-                {
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag == true)
-            {
-                for (int i = vec.size() - 1; i >= diff; i--)
-                {
-                    vec[i] -= digit.vec[i - diff];
-                }
-            }
-            else
-            {
-                LongIntDigit copyDigit = digit;
-                for (int i = copyDigit.vec.size() - 1; i >= diff; i--)
-                {
-                    copyDigit.vec[i] -= vec[i - diff];
-                }
-                vec = copyDigit.vec;
-                sign = copyDigit.sign;
-            }
-        }
-        if (vec.size() < digit.vec.size())
-        {
-            LongIntDigit copyDigit = digit;
-            for (int i = copyDigit.vec.size() - 1; i >= diff; i--)
-            {
-                copyDigit.vec[i] -= vec[i - diff];
-            }
-            vec = copyDigit.vec;
-            sign = copyDigit.sign;
-
+            vec[i] += digit.vec[i - diff];
         }
     }
+    cout << "VEC: ";
+    for (int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i];
+    }
+    cout << endl;
     digitNormalization();
+    cout << "VEC: ";
+    for (int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i];
+    }
+    cout << endl;
     return *this;
 }
 
@@ -174,37 +114,26 @@ LongIntDigit& LongIntDigit::operator*(const LongIntDigit& digit)
     LongIntDigit result;
     result.vec.resize(vec.size() + digit.vec.size() - 1);
 
+    const Vector<int> tempVec = vec;
     for (int i = digit.vec.size() - 1; i >= 0; i--)
     {
-        LongIntDigit tempDigit = *this;
+        LongIntDigit tempDigit;
+        tempDigit.vec = tempVec;
+        tempDigit.sign = sign;
 
         for (int j = 0; j < tempDigit.vec.size(); j++)
         {
             tempDigit.vec[j] *= digit.vec[i];
         }
 
-        for (int j = 0; j < digit.vec.size() - 1 - i; j++)
+        for (int i = 0; i < digit.vec.size() - 1 - i; i++)
         {
             tempDigit.vec.push_back(0);
         }
-
-        cout << "TEMP: ";
-        for (int i = 0; i < tempDigit.vec.size(); i++)
-        {
-            cout << tempDigit.vec[i];
-        }
-        cout << endl;
-
         result = result + tempDigit;
-        cout << "RESULT: ";
-        for (int i = 0; i < result.vec.size(); i++)
-        {
-            cout << result.vec[i];
-        }
-        cout << endl;
     }
+
     vec = result.vec;
-    digitNormalization();
     return *this;
 }
 

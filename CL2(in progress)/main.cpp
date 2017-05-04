@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "LongIntDigit.h"
-#include "vector.h"
+#include "Vector.h"
 
 using namespace std;
 
@@ -55,7 +55,7 @@ int main()
     cout << "digit1 = " << digit1 << endl;
     cout << "digit2 = " << digit2 << endl;
 
-    LongIntDigit digit3 = digit1 * digit2;
+    LongIntDigit digit3 = digit1 + digit2;
     cout << "digit3 = " << digit3 << endl;
 
     return 0;

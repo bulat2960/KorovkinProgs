@@ -16,6 +16,10 @@ class Vector
 
         Vector(const Vector<T>& vec)
         {
+            if (vec._storSize > 0)
+            {
+                delete[] _stor;
+            }
             _storSize = vec._storSize;
             _stor = new T[vec._storSize];
             for (unsigned i = 0; i < vec._storSize; i++)
@@ -49,6 +53,26 @@ class Vector
             }
         }
 
+        void push_front(T data)
+        {
+            T* result = new T[_storSize];
+
+            for (unsigned i = 0; i < _storSize; i++)
+            {
+                result[i] = _stor[i];
+            }
+
+            delete[] _stor;
+
+            _storSize++;
+            _stor = new T[_storSize];
+
+            for (unsigned i = 0; i < _storSize; i++)
+            {
+                _stor[i] = ((i == 0) ? data : result[i - 1]);
+            }
+        }
+
         int size() const
         {
             return _storSize;
@@ -67,7 +91,7 @@ class Vector
 
         bool empty() const
         {
-            return _storSize == 0 ? true : false;
+            return (_storSize == 0 ? true : false);
         }
 
         void clear()
@@ -75,11 +99,17 @@ class Vector
             _storSize = 0;
             delete[] _stor;
         }
+		
+		T front() const
+		{
+			return _stor[0];
+		}
 
         T back() const
         {
             return _stor[_storSize - 1];
         }
+		
 
         T& operator [](int index) const
         {

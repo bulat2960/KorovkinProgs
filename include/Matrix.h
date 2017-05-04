@@ -59,8 +59,7 @@ class Matrix
             matrix = new Array<T>[size1];
             for (int i = 0; i < size1; i++)
             {
-                Array<T> &vec = matrix[i]; // Reference (without copy)
-                vec = *(new Array<T>(size2));
+                matrix[i] = *(new Array<T>(size2));
             }
             _size1 = size1;
             _size2 = size2;
