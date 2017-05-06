@@ -1,28 +1,37 @@
 #ifndef VECTOR_H_INCLUDED
 #define VECTOR_H_INCLUDED
 
+#include <stdexcept>
+
 template <typename T>
 class Vector
 {
     private:
         T* _stor;
-        unsigned _storSize;
+        int _storSize;
     public:
         Vector()
         {
             _storSize = 0;
-            _stor = nullptr;
+            _stor = 0;
+        }
+
+        Vector(int storSize)
+        {
+            _storSize = storSize;
+            _stor = new T[_storSize];
         }
 
         Vector(const Vector<T>& vec)
         {
-            if (vec._storSize > 0)
-            {
-                delete[] _stor;
-            }
+            *this = vec;
+        }
+
+        void operator=(const Vector<T>& vec)
+        {
             _storSize = vec._storSize;
-            _stor = new T[vec._storSize];
-            for (unsigned i = 0; i < vec._storSize; i++)
+            _stor = new T[_storSize];
+            for (int i = 0; i < vec._storSize; i++)
             {
                 _stor[i] = vec._stor[i];
             }
@@ -35,11 +44,11 @@ class Vector
 
         void push_back(T data)
         {
-            T* result = new T[_storSize];
+            T* tempStor = new T[_storSize];
 
-            for (unsigned i = 0; i < _storSize; i++)
+            for (int i = 0; i < _storSize; i++)
             {
-                result[i] = _stor[i];
+                tempStor[i] = _stor[i];
             }
 
             delete[] _stor;
@@ -47,19 +56,19 @@ class Vector
             _storSize++;
             _stor = new T[_storSize];
 
-            for (unsigned i = 0; i < _storSize; i++)
+            for (int i = 0; i < _storSize; i++)
             {
-                _stor[i] = ((i != _storSize - 1) ? result[i] : data);
+                _stor[i] = ((i != _storSize - 1) ? tempStor[i] : data);
             }
         }
 
         void push_front(T data)
         {
-            T* result = new T[_storSize];
+            T* tempStor = new T[_storSize];
 
-            for (unsigned i = 0; i < _storSize; i++)
+            for (int i = 0; i < _storSize; i++)
             {
-                result[i] = _stor[i];
+                tempStor[i] = _stor[i];
             }
 
             delete[] _stor;
@@ -67,9 +76,9 @@ class Vector
             _storSize++;
             _stor = new T[_storSize];
 
-            for (unsigned i = 0; i < _storSize; i++)
+            for (int i = 0; i < _storSize; i++)
             {
-                _stor[i] = ((i == 0) ? data : result[i - 1]);
+                _stor[i] = ((i == 0) ? data : tempStor[i - 1]);
             }
         }
 
@@ -83,10 +92,6 @@ class Vector
             _storSize = newSize;
             delete[] _stor;
             _stor = new T[_storSize];
-            for (unsigned i = 0; i < _storSize; i++)
-            {
-                _stor[i] = 0;
-            }
         }
 
         bool empty() const
@@ -99,7 +104,7 @@ class Vector
             _storSize = 0;
             delete[] _stor;
         }
-		
+
 		T front() const
 		{
 			return _stor[0];
@@ -109,12 +114,17 @@ class Vector
         {
             return _stor[_storSize - 1];
         }
-		
 
-        T& operator [](int index) const
+
+        T& operator[](int index) const
         {
+            if (index < 0 || index > _storSize - 1)
+            {
+                throw std::out_of_range("Index is outside the array");
+            }
             return _stor[index];
         }
 };
 
 #endif // VECTOR_H_INCLUDED
+

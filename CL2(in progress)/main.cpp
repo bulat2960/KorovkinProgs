@@ -21,7 +21,7 @@ void generateDigit(Vector<char>& vec)
     }
 }
 
-ostream& operator<<(ostream& ost, const LongIntDigit& digit)
+ostream& operator<<(ostream& ost, const LongIntDigit& digit) //????????????????????Неверно
 {
     if (digit.getSign() == false)
     {
@@ -55,8 +55,15 @@ int main()
     cout << "digit1 = " << digit1 << endl;
     cout << "digit2 = " << digit2 << endl;
 
-    LongIntDigit digit3 = digit1 + digit2;
-    cout << "digit3 = " << digit3 << endl;
+    LongIntDigit digitSumma = digit1 + digit2;
+    cout << "digitSumma = " << digitSumma << endl;
+    LongIntDigit digitMinus = digit1 - digit2;
+    cout << "digitMinus = " << digitMinus << endl;
+    LongIntDigit digitMult = digit1 * digit2;
+    cout << "digitMult = " << digitMult << endl;
+    LongIntDigit digitDiv = digit1 / digit2;
+    cout << "digitDiv = " << digitDiv << endl;
 
     return 0;
 }
+

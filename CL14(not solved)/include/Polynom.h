@@ -1,70 +1,90 @@
 #ifndef POLYNOM_H
 #define POLYNOM_H
 
+#include "Vector.h"
+
 template<typename T>
 class Polynom
 {
     private:
-        T* arr;
-        int deg;
+        Vector<T> _stor;
+        int _deg;
     public:
         Polynom()
         {
-            arr = nullptr;
-            deg = 0;
+            _deg = 0;
         }
 
-        Polynom(T* _arr, int _deg)
+        Polynom(int deg)
         {
-            deg = _deg;
-            arr = new T[_deg];
-
-            for (int i = 0; i <= deg; i++)
+            _deg = deg;
+            for (int i = 0; i <= _deg; i++)
             {
-                arr[i] = _arr[i];
+                _stor.push_back(0);
             }
         }
 
-        ~Polynom()
+        Polynom(const Vector<T>& stor, int deg)
         {
-            delete[] arr;
+            _deg = deg;
+            _stor = stor;
         }
 
-        Polynom& operator+(const Polynom& poly)
+        void operator=(const Polynom& poly)
         {
-            if (deg >= poly.deg)
+            _deg = poly._deg;
+            _stor.clear();
+            for (int i = 0; i <= _deg; i++)
             {
-                int diff = deg - poly.deg;
-                for (int i = 0; i <= deg; i++)
-                {
-                    arr[diff + i] += poly.arr[i];
-                }
-                return *this;
+                _stor.push_back(poly._stor[i]);
             }
-            else
+        }
+
+        Polynom operator+(const Polynom& poly)
+        {
+            while (poly._deg > _deg)
             {
-                int* temp = new T[deg + 1];
-                for (int i = 0; i <= deg; i++)
-                {
-                    temp[i] = arr[i];
-                }
-
-                delete[] arr;
-
-                arr = new T[poly.deg + 1];
-                deg = poly.deg;
-                for (int i = 0; i <= deg; i++)
-                {
-                    arr[i] = poly.arr[i];
-                }
-
-                int diff = poly.deg - deg;
-                for (int i = 0; i <= deg; i++)
-                {
-                    arr[diff + i] += temp[i];
-                }
-                return *this;
+                _deg++;
+                _stor.push_front(0);
             }
+            Polynom result = *this;
+
+            for (int i = 0; i <= _deg; i++)
+            {
+                result._stor[i] += poly._stor[i];
+            }
+            std::cout << "WTF\n";
+            return result;
+        }
+
+        Polynom operator-(const Polynom& poly)
+        {
+            while (poly._deg > _deg)
+            {
+                _deg++;
+                _stor.push_front(0);
+            }
+            Polynom result = *this;
+
+            for (int i = 0; i <= _deg; i++)
+            {
+                result._stor[i] -= poly._stor[i];
+            }
+            return result;
+        }
+
+        Polynom operator*(const Polynom& poly)
+        {
+        }
+
+        int getDeg() const
+        {
+            return _deg;
+        }
+
+        Vector<T> getDigit() const
+        {
+            return _stor;
         }
 };
 
