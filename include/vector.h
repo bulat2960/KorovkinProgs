@@ -13,7 +13,7 @@ class Vector
         Vector()
         {
             _storSize = 0;
-            _stor = 0;
+            _stor = nullptr;
         }
 
         Vector(int storSize)

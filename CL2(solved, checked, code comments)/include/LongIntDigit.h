@@ -13,6 +13,7 @@ class LongIntDigit
         LongIntDigit(const Vector<char>&);
         LongIntDigit(const LongIntDigit&);
         LongIntDigit(const Vector<int>&, bool);
+        void operator=(const LongIntDigit&);
         Vector<int> getDigit() const;
         bool getSign() const;
         void digitNormalization();
@@ -20,6 +21,8 @@ class LongIntDigit
         LongIntDigit operator-(const LongIntDigit&);
         LongIntDigit operator*(const LongIntDigit&);
         LongIntDigit operator/(const LongIntDigit&);
+        LongIntDigit operator%(const LongIntDigit&);
+        LongIntDigit operator^(int);
 };
 
 #endif // LONGINTDIGIT_H
