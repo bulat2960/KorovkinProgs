@@ -34,7 +34,7 @@ void showMatrix(const Matrix<T>& matrix)
 }
 
 template<typename T>
-int determinantMatrix(Matrix<T>& matrix)
+double determinantMatrix(Matrix<T>& matrix)
 {
     if (matrix.size1() == 2)
     {
@@ -90,7 +90,7 @@ int main()
 
     try
     {
-        cout << determinantMatrix(matrix);
+        cout << setprecision(20) << determinantMatrix(matrix);
 
     }
     catch (const invalid_argument& error)

@@ -36,19 +36,23 @@ int main()
     Vector<int> vec1;
     Vector<int> vec2;
     int element;
+
+    cout << "Enter digit1: ";
     for (int i = 0; i < 3; i++)
     {
         cin >> element;
         vec1.push_back(element);
     }
+
+    cout << "Enter digit2: ";
     for (int i = 0; i < 2; i++)
     {
         cin >> element;
         vec2.push_back(element);
     }
 
-    Polynom<int> poly1(vec1, 2);
-    Polynom<int> poly2(vec2, 1);
+    Polynom<int> poly1(vec1, vec1.size() - 1);
+    Polynom<int> poly2(vec2, vec2.size() - 1);
     Polynom<int> poly3 = poly1 + poly2;
     cout << "poly1 = " << poly1 << endl;
     cout << "poly2 = " << poly2 << endl;

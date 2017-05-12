@@ -5,15 +5,15 @@ using namespace std;
 
 int main()
 {
-    Stack<char> St(4);
+    // Создаем стек, пушим несколько элементов, печатаем их, ловим брошенные злобными методами исключения
+    Stack<char> st(4);
     try
     {
-        St.push('a');
-        St.push('b');
-        St.push('c');
-        St.push('d');
-        St.push('a');
-        St.print();
+        st.push('a');
+        st.push('b');
+        st.push('c');
+        st.push('d');
+        st.print();
     }
     catch (const out_of_range& e)
     {

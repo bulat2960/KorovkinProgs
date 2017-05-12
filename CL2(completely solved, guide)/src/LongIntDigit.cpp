@@ -2,9 +2,6 @@
 
 #include <cmath>
 
-#include <iostream>
-using namespace std;
-
 LongIntDigit::LongIntDigit()
 {
     sign = true;
@@ -261,7 +258,7 @@ LongIntDigit LongIntDigit::operator%(const LongIntDigit& rcdDigit)
     }
     if (sign == false)
     {
-        lidDividend.sign == false;
+        lidDividend.sign = false;
     }
     return lidDividend;
 }

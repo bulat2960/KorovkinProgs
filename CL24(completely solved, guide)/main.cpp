@@ -4,9 +4,10 @@
 
 using namespace std;
 
-void Swap(int &element1, int &element2)
+template<typename T>
+void Swap(T& element1, T& element2)
 {
-    int temp = element1;
+    T temp = element1;
     element1 = element2;
     element2 = temp;
 }
@@ -68,11 +69,8 @@ void transformMatrix(const Matrix<T>& matrix, int* sumArr)
 }
 
 template<typename T>
-void writeMatrix(const Matrix<T>& matrix)
+void writeMatrix(const Matrix<T>& matrix, ofstream& out)
 {
-    string filename2;
-    cin >> filename2;
-    ofstream out(filename2);
     for (int i = 0; i < matrix.size1(); i++)
     {
         for (int j = 0; j < matrix.size2(); j++)
@@ -84,11 +82,10 @@ void writeMatrix(const Matrix<T>& matrix)
     out.close();
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    string filename1;
-    cin >> filename1;
-    ifstream in(filename1);
+    ifstream in(argv[1]);
+    ofstream out(argv[2]);
     if (!in.is_open())
     {
         cout << "CANNOT FIND FILE!!!" << endl;
@@ -113,7 +110,7 @@ int main()
 
     transformMatrix(matrix, sumArr);
 
-    writeMatrix(matrix);
+    writeMatrix(matrix, out);
 
     return 0;
 }

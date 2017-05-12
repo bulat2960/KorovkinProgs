@@ -8,9 +8,8 @@
 using namespace std;
 
 template<typename T>
-bool generateMatrix(Matrix<T>& matrix)
+bool generateMatrix(Matrix<T>& matrix, ifstream& in)
 {
-    ifstream in("input.txt");
     if (!in.is_open())
     {
         cout << "CAN'T OPEN FILE" << endl;
@@ -31,8 +30,9 @@ bool generateMatrix(Matrix<T>& matrix)
         }
     }
 
-    if (counter != matrix.size1() * matrix.size2())
+    if (counter < matrix.size1() * matrix.size2())
     {
+        cout << "counter = " << counter << endl;
         cout << "NOT ENOUGH ELEMENTS" << endl;
         return false;
     }
@@ -93,8 +93,10 @@ bool isColMax(const Matrix<T>& matrix, int strNumber, int colNumber)
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
+    ifstream in(argv[1]);
+
     int m, n;
     cin >> n >> m;
     if (n <= 1 || m <= 1)
@@ -104,7 +106,7 @@ int main()
 
     Matrix<double> matrix(n, m);
 
-    if (generateMatrix(matrix) == false)
+    if (generateMatrix(matrix, in) == false)
     {
         return 0;
     }

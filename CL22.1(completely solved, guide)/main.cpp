@@ -71,9 +71,11 @@ bool isColMax(const Matrix<T>& matrix, int strNumber, int colNumber)
     return false;
 }
 
-int main()
+int main(int argc, char** argv)
 {
     srand(time(0));
+
+    ofstream out(argv[1]);
 
     int m, n;
     cin >> n >> m;
@@ -84,8 +86,6 @@ int main()
     }
 
     Matrix<double> matrix(n, m);
-
-    ofstream out("output.txt");
 
     bool flag = false;
     while (flag == false)

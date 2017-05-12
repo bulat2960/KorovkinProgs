@@ -20,7 +20,7 @@ class Matrix
 
             for (int i = 0; i < _size1; i++)
             {
-                Vector<int> vec(_size2);
+                Vector<T> vec(_size2);
                 _matrix[i] = vec;
             }
         }
