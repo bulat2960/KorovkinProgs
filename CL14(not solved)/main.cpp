@@ -38,14 +38,14 @@ int main()
     int element;
 
     cout << "Enter digit1: ";
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 2; i++)
     {
         cin >> element;
         vec1.push_back(element);
     }
 
     cout << "Enter digit2: ";
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         cin >> element;
         vec2.push_back(element);
