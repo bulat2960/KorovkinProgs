@@ -78,7 +78,7 @@ int main()
     LongIntDigit digitMod = digit1 % digit2;
     cout << "digitMod = " << digitMod << endl;
 
-    LongIntDigit digitPow = digit1 ^ 5;
+    LongIntDigit digitPow = digit1 ^ deg;
     cout << "digitPow = " << digitPow << endl;
 
     return 0;

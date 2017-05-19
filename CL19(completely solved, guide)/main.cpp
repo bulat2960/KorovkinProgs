@@ -65,7 +65,7 @@ void triangularMatrix(Matrix<T>& matrix)
             {
                 matrix[i][j] = 0;
             }
-            cout << setw(5) << setprecision(2) << matrix[i][j] << ' ';
+            cout << setw(7) << setprecision(3) << matrix[i][j] << ' ';
         }
         cout << endl;
     }
