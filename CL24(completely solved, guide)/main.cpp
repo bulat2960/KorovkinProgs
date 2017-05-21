@@ -71,14 +71,7 @@ void transformMatrix(const Matrix<T>& matrix, int* sumArr)
 template<typename T>
 void writeMatrix(const Matrix<T>& matrix, ofstream& out)
 {
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            out << matrix[i][j] << ' ';
-        }
-        out << endl;
-    }
+    out << matrix;
     out.close();
 }
 

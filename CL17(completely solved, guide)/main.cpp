@@ -14,23 +14,16 @@ int main()
         return 0;
     }
 
-    Matrix<bool> mtrx(size1, size2);
+    Matrix<bool> matrix(size1, size2);
     for (unsigned i = 0; i < size1; i++)
     {
         for (unsigned j = 0; j < size2; j++)
         {
-            (i + j) % 2 == 0 ? mtrx[i][j] = true : mtrx[i][j] = false;
+            (i + j) % 2 == 0 ? matrix[i][j] = true : matrix[i][j] = false;
         }
     }
 
-    for (unsigned i = 0; i < size1; i++)
-    {
-        for (unsigned j = 0; j < size2; j++)
-        {
-            cout << mtrx[i][j] << ' ';
-        }
-        cout << endl;
-    }
+    cout << matrix;
 
     return 0;
 }

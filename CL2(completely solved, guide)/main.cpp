@@ -33,7 +33,7 @@ ostream& operator<<(ostream& ost, const LongIntDigit& digit)
         k++;
     }
 
-    if (digit.getSign() == false && digit.getDigit()[0] != 0)
+    if (digit.getSign() == false)
     {
         ost << '-';
     }

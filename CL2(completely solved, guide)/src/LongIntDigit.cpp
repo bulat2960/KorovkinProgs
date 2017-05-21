@@ -99,6 +99,10 @@ LongIntDigit LongIntDigit::operator+(const LongIntDigit& rcdDigit)
     {
         // Получение числа 1000...(maxVecSize ноликов)
         Vector<int> vecMil(maxVecSize);
+        for (int i = 0; i < maxVecSize; i++)
+        {
+            vecMil[i] = 0;
+        }
         vecMil.push_front(1);
         result = LongIntDigit(vecMil, true) + LongIntDigit(vecRes, false);
         result.sign = false;
@@ -119,7 +123,7 @@ LongIntDigit LongIntDigit::operator-(const LongIntDigit& rcdDigit)
 {
     LongIntDigit copyDigit = rcdDigit;
     copyDigit.sign == true ? copyDigit.sign = false : copyDigit.sign = true;
-    return *this + copyDigit;
+    return (*this + copyDigit);
 }
 
 LongIntDigit LongIntDigit::operator*(const LongIntDigit& rcdDigit)
@@ -170,7 +174,8 @@ LongIntDigit LongIntDigit::operator/(const LongIntDigit& rcdDigit)
     int rcdVecSize = rcdDigit.vec.size();
     int resDigitNum;
 
-    Vector<int> vecRes(1);
+    Vector<int> vecRes;
+    vecRes.push_back(0);
 
     LongIntDigit lidDelta;
     LongIntDigit lidDividend = LongIntDigit(vec, true);
@@ -222,16 +227,8 @@ LongIntDigit LongIntDigit::operator%(const LongIntDigit& rcdDigit)
     int rcdVecSize = rcdDigit.vec.size();
     int resDigitNum;
 
-    Vector<int> vecRes(1);
-
     LongIntDigit lidDelta;
     LongIntDigit lidDividend = LongIntDigit(vec, true);
-
-    if (thisVecSize - rcdVecSize < 0)
-    {
-        result = LongIntDigit(vecRes, sign == rcdDigit.sign);
-        return result;
-    }
 
     for (int i = 0; i < thisVecSize - rcdVecSize + 1; i++)
     {

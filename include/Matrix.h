@@ -2,7 +2,10 @@
 #define MATRIX_H_INCLUDED
 
 #include <stdexcept>
+#include <iomanip>
 #include "Vector.h"
+
+using namespace std;
 
 template<typename T>
 class Matrix
@@ -47,6 +50,23 @@ class Matrix
         ~Matrix()
         {
             delete[] _matrix;
+        }
+
+        friend ostream& operator<<(ostream& ost, const Matrix& matrix)
+        {
+            for (int i = 0; i < matrix.size1(); i++)
+            {
+                for (int j = 0; j < matrix.size2(); j++)
+                {
+                    if (matrix[i][j] < 0.001 && matrix[i][j] > -0.001)
+                    {
+                        matrix[i][j] = 0;
+                    }
+                    ost << setw(4) << setprecision(2) << matrix[i][j] << ' ';
+                }
+                ost << endl;
+            }
+            return ost;
         }
 };
 

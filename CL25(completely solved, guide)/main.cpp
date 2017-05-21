@@ -30,15 +30,7 @@ void generateMatrix(Matrix<T>& matrix)
 template<typename T>
 void showMatrix(const Matrix<T>& matrix)
 {
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            cout << setw(2) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
-    cout << "------------------" << endl;
+    cout << matrix << endl << endl;
 }
 
 template<typename T>

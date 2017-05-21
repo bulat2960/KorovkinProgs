@@ -16,11 +16,11 @@ class ComplexDigit
         double& GetA();
         double& GetB();
 
-        ComplexDigit operator+( const ComplexDigit& );
-        ComplexDigit operator-( const ComplexDigit& );
-        ComplexDigit operator*( const ComplexDigit& );
-        ComplexDigit operator/( const ComplexDigit& );
-        ComplexDigit operator^( int );
+        ComplexDigit operator+(const ComplexDigit&);
+        ComplexDigit operator-(const ComplexDigit&);
+        ComplexDigit operator*(const ComplexDigit&);
+        ComplexDigit operator/(const ComplexDigit&);
+        ComplexDigit operator^(int);
         ComplexDigit operator-();
 };
 

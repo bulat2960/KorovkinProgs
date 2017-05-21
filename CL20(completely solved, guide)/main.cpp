@@ -23,14 +23,7 @@ template<typename T>
 void showMatrix(const Matrix<T>& matrix)
 {
     cout << "Initial matrix" << endl;
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            cout << setw(5) << setprecision(2) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
+    cout << matrix << endl;
 }
 
 template<typename T>

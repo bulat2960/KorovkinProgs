@@ -22,15 +22,7 @@ void generateMatrix(Matrix<T>& matrix)
 template<typename T>
 void showMatrix(const Matrix<T>& matrix)
 {
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            cout << setw(10) << setprecision(3) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
-    cout << "--------------------------" << endl;
+    cout << matrix << "--------------------------" << endl;
 }
 
 template<typename T>
@@ -57,18 +49,7 @@ void triangularMatrix(Matrix<T>& matrix)
     }
 
     cout << "Final matrix" << endl;
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            if (matrix[i][j] < 0.00001 && matrix[i][j] > -0.00001)
-            {
-                matrix[i][j] = 0;
-            }
-            cout << setw(7) << setprecision(3) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
+    cout << matrix << endl;
 }
 
 int main()

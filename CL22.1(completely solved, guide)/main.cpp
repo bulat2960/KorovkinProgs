@@ -20,20 +20,6 @@ void generateMatrix(Matrix<T>& matrix)
 }
 
 template<typename T>
-void showMatrix(const Matrix<T>& matrix)
-{
-    cout << "Initial matrix" << endl;
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            cout << setw(5) << setprecision(2) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
-}
-
-template<typename T>
 bool isStrMin(const Matrix<T>& matrix, int strNumber, int colNumber)
 {
     double Min = matrix[strNumber][colNumber];
@@ -98,7 +84,7 @@ int main(int argc, char** argv)
             {
                 if (isStrMin(matrix, i, j) && isColMax(matrix, i, j))
                 {
-                    cout << "COORDS: " << i + 1 << ' ' << j + 1 << endl;
+                    out << "COORDS: " << i + 1 << ' ' << j + 1 << endl;
                     flag = true;
                 }
             }
@@ -106,14 +92,7 @@ int main(int argc, char** argv)
 
         if (flag == true)
         {
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    out << matrix[i][j] << ' ';
-                }
-                out << endl;
-            }
+            out << matrix;
         }
     }
     return 0;

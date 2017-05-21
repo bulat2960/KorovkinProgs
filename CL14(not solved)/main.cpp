@@ -9,23 +9,20 @@ ostream& operator<<(ostream& ost, const Polynom<T>& poly)
 {
     for (int i = 0; i <= poly.getDeg(); i++)
     {
-        if (poly.getDigit()[i] != 0)
+        if (poly.getDeg() - i != 0)
         {
-            if (poly.getDeg() - i != 0)
+            if (poly.getDigit()[i] != 1)
             {
-                if (poly.getDigit()[i] != 1)
-                {
-                    ost << "(" << poly.getDigit()[i] << "*x^" << poly.getDeg() - i << ") + ";
-                }
-                else
-                {
-                    ost << "(x^" << poly.getDeg() - i << ") + ";
-                }
+                ost << "(" << poly.getDigit()[i] << "*x^" << poly.getDeg() - i << ") + ";
             }
             else
             {
-                ost << poly.getDigit()[i];
+                ost << "(x^" << poly.getDeg() - i << ") + ";
             }
+        }
+        else
+        {
+            ost << poly.getDigit()[i];
         }
     }
     return ost;
@@ -33,12 +30,12 @@ ostream& operator<<(ostream& ost, const Polynom<T>& poly)
 
 int main()
 {
-    Vector<int> vec1;
-    Vector<int> vec2;
+    Vector<double> vec1;
+    Vector<double> vec2;
     int element;
 
     cout << "Enter digit1: ";
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         cin >> element;
         vec1.push_back(element);
@@ -51,11 +48,8 @@ int main()
         vec2.push_back(element);
     }
 
-    Polynom<int> poly1(vec1, vec1.size() - 1);
-    Polynom<int> poly2(vec2, vec2.size() - 1);
-    Polynom<int> poly3 = poly1 + poly2;
-    cout << "poly1 = " << poly1 << endl;
-    cout << "poly2 = " << poly2 << endl;
-    cout << "poly3 = " << poly3 << endl;
+    Polynom<double> poly1(vec1);
+    Polynom<double> poly2(vec2);
+
     return 0;
 }

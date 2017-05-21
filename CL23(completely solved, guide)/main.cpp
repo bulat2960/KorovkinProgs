@@ -20,14 +20,7 @@ void generateMatrix(Matrix<T>& matrix)
 template<typename T>
 void showMatrix(const Matrix<T>& matrix)
 {
-    for (int i = 0; i < matrix.size1(); i++)
-    {
-        for (int j = 0; j < matrix.size2(); j++)
-        {
-            cout << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
+    cout << matrix << endl;
 }
 
 template<typename T>

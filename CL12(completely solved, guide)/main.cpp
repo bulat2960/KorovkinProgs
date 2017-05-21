@@ -5,8 +5,6 @@ using namespace std;
 
 int main()
 {
-    print();
-    // Создаем стек, пушим несколько элементов, печатаем их, ловим брошенные злобными методами исключения
     Stack<char> st(4);
     try
     {
@@ -14,7 +12,7 @@ int main()
         st.push('b');
         st.push('c');
         st.push('d');
-        st.print();
+        cout << st << endl;
     }
     catch (const out_of_range& e)
     {

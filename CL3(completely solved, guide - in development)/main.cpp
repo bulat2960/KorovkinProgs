@@ -24,7 +24,7 @@ void generateData(char* str)
 
 int main()
 {
-    char* str1 = new char[10]; // Массивы на 10 элементов, так как длина даты в виде ДД ММ ГГГГ - 10 символов(включая пробелы)
+    char* str1 = new char[10];
     char* str2 = new char[10];
     generateData(str1);
     generateData(str2);

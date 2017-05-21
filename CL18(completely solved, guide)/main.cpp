@@ -88,13 +88,6 @@ int main()
         j++;
     }
 
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            cout << setw(5) << matrix[i][j] << ' ';
-        }
-        cout << endl;
-    }
+    cout << matrix;
     return 0;
 }

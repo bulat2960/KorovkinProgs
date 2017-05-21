@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <windows.h>
 #include "VectorDictionary.h"
 #include "String.h"
 
@@ -26,7 +27,6 @@ void addWord(VectorDictionary<String>& vec)
     String buffer1, buffer2;
     cout << "Enter word(English) and translate(Russian): ";
     cin >> buffer1 >> buffer2;
-    cout << buffer1 << ' ' << buffer2 << endl;
     vec.push_back(buffer1, buffer2);
 }
 
@@ -37,10 +37,12 @@ void writeDictionary(VectorDictionary<String>& vec, ofstream& out)
 
 int main(int argc, char** argv)
 {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
     setlocale(LC_ALL, "Russian");
 
     ifstream in(argv[1]);
-    ofstream out(argv[2]);
 
     VectorDictionary<String> vec;
 
@@ -53,6 +55,10 @@ int main(int argc, char** argv)
 
     findWord(vec);
     addWord(vec);
+
+    in.close();
+
+    ofstream out(argv[1]);
     writeDictionary(vec, out);
     return 0;
 }

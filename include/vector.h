@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+using namespace std;
+
 template <typename T>
 class Vector
 {
@@ -115,15 +117,46 @@ class Vector
             return _stor[_storSize - 1];
         }
 
-
         T& operator[](int index) const
         {
             if (index < 0 || index > _storSize - 1)
             {
-                throw std::out_of_range("Index is outside the array");
+                throw out_of_range("Index is outside the array");
             }
             return _stor[index];
         }
+
+        friend istream& operator>>(istream& ist, Vector& vec)
+        {
+            if (vec.size() == 0)
+            {
+                throw invalid_argument("Vector size == 0");
+            }
+
+            int i = 0;
+            T element;
+
+            while (ist >> element)
+            {
+                vec[i] = element;
+                i++;
+                if (i == vec.size())
+                {
+                    break;
+                }
+            }
+            return ist;
+        }
+
+        friend ostream& operator<<(ostream& ost, const Vector& vec)
+        {
+            for (int i = 0; i < vec.size(); i++)
+            {
+                ost << vec[i] << ' ';
+            }
+            return ost;
+        }
+
 };
 
 #endif // VECTOR_H_INCLUDED
