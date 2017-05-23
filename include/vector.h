@@ -39,6 +39,16 @@ class Vector
             }
         }
 
+        Vector<T> operator+(const Vector<T>& vec)
+        {
+            Vector<T> result = *this;
+            for (int i = 0; i < vec.size(); i++)
+            {
+                result.push_back(vec[i]);
+            }
+            return result;
+        }
+
         ~Vector()
         {
             delete[] _stor;

@@ -68,8 +68,10 @@ class CPolinom : public Vector<ComplexDigit>
             for (int i = 0; i < maxSize; i++)
             {
                 i < size1 ? cdA = (*this)[i] : cdA = cdNull;
+                cout << cdA << endl;
                 i < size2 ? cdB = cPoly[i] : cdB = cdNull;
                 result[i] = cdA + cdB;
+                cout << "RESULT = " << result << endl;
             }
             return result;
         }

@@ -40,6 +40,11 @@ double determinantMatrix(Matrix<T>& matrix)
     {
         for (int j = i + 1; j < matrix.size2(); j++)
         {
+            if (i == 2)
+            {
+                matrix[i][i] = 0;
+            }
+            cout << matrix << "-------------------------------" << endl;
             if (matrix[i][i] == 0)
             {
                 throw invalid_argument("WRONG TRIANGULAR MATRIX!");

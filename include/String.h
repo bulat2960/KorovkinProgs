@@ -6,7 +6,7 @@ using namespace std;
 class String
 {
     private:
-        const char* _str;
+        char* _str;
         int _strSize;
     public:
         String()
@@ -19,7 +19,10 @@ class String
         {
             _strSize = getSize(str);
             _str = new char[_strSize];
-            _str = str;
+            for (int i = 0; i < _strSize; i++)
+            {
+                _str[i] = str[i];
+            }
         }
 
         int getSize(const char* str)
@@ -37,7 +40,10 @@ class String
             delete[] _str;
             _strSize = getSize(str);
             _str = new char[_strSize];
-            _str = str;
+            for (int i = 0; i < _strSize; i++)
+            {
+                _str[i] = str[i];
+            }
         }
 
         bool operator==(const String& str)
